@@ -76,50 +76,63 @@
                     <!-- Leraren -->
                     <div class="tab-pane fade" id="leraren" role="tabpanel" aria-labelledby="contact-tab">
 
-                        <table class="table table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">Naam</th>
-                                    <th scope="col">Voornaam</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Delete</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td><a href="#">Delete</a></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td><a href="#">Delete</a></td>
-                                  </tr>
-                                </tbody>
-                        </table>
-                        <hr>
 
+                            <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Naam</th>
+                                        <th scope="col">Voornaam</th>
+                                        <th scope="col">Foto</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Verwijder</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in lerarenRows %}
+                                            <tr>
+                                                <td>{{ row[0] }}</td>
+                                                <td>{{ row[1] }}</td>
+                                                <td>{{ row[2] }}</td>
+                                                <td><img src="data:;base64,{{row[3]}}"></td>
+                                                <td>{{ row[4] }}</td>
+                                                <!-- {% for data in row %}
+                                                <td>{{ data }}</td> 
+                                                {% endfor %} -->
+                                                <td>
+                                                    <form action="{{ url_for('verwijderleraar', entry_id=row[0])}}" method="post"> 
+                                                        
+                                                        <button type="submit" class="btn btn-danger">Verwijder</button>
+                                                    </form>
+                                                </td>   
+                                            </tr>
+                                        {% endfor %}
+                                   
+                                    </tbody>
+                            </table>
+
+                            
+
+
+                            <hr>
                         <h3>Voeg een leraar toe</h3>
 
-                        <form method="POST" action="/nieuweleraar">
+                        <form action = "{{ url_for('nieuweleraar') }}" method = "POST" >
                                 <div class="form-group">
                                     <label for="naam">Naam</label>
-                                    <input type="text" class="form-control" id="naam" placeholder="Maes">
+                                    <input type="text" class="form-control" name="naam" id="naam" placeholder="Maes">
                                 </div>
                                 <div class="form-group">
                                     <label for="voornaam">Voornaam</label>
-                                    <input type="text" class="form-control" id="voornaam" placeholder="Jan">
+                                    <input type="text" class="form-control" name="voornaam" id="voornaam" placeholder="Jan">
                                 </div>
                                 <div class="form-group">
                                   <label for="email">Email address</label>
-                                  <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                  <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
                                 </div>
                                 <div class="form-group">
                                   <label for="exampleInputFile">Foto</label>
-                                  <input type="file" class="form-control-file" id="foto" aria-describedby="fileHelp">
+                                  <input type="file" class="form-control-file" name="foto" id="foto" aria-describedby="fileHelp">
                                   <small id="fileHelp" class="form-text text-muted">Gelieve een vierkante foto te kiezen.</small>
                                 </div>
                 
