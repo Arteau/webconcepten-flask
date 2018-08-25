@@ -24,58 +24,108 @@
                         <table class="table table-bordered">
                                 <thead>
                                   <tr>
+                                    <th scope="col">#</th>
                                     <th scope="col">Naam</th>
                                     <th scope="col">Omschrijving</th>
                                     <th scope="col">Delete</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td><a href="#">Delete</a></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td><a href="#">Delete</a></td>
-                                  </tr>
+                                        {% for row in richtingenRows %}
+                                        <tr>
+                                            <td>{{ row[0] }}</td>
+                                            <td>{{ row[1] }}</td>
+                                            <td>{{ row[2] }}</td>
+                                            <td>
+                                                <form action="{{ url_for('verwijderrichting', entry_id=row[0])}}" method="post"> 
+                                                    
+                                                    <button type="submit" class="btn btn-danger">Verwijder</button>
+                                                </form>
+                                            </td>   
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
                         </table>   
+                        <hr>
+                        <h3>Voeg een richting toe</h3>
+
+                        <form action = "{{ url_for('nieuwerichting') }}" method = "POST" >
+                                <div class="form-group">
+                                    <label for="naam">Naam</label>
+                                    <input type="text" class="form-control" name="naam" id="naam" placeholder="Technische Wetenschappen">
+                                </div>
+                                <div class="form-group">
+                                    <label for="omschrijving">Omschrijving</label>
+                                    <textarea class="form-control" rows="5" name="omschrijving" id="omschrijving" placeholder="Logische vooropleidingen zijn de 2de graad TSO Biotechnische wetenschappen of Techniek-wetenschappen. Dit is een theoretische studierichting. De nadruk ligt op de studie van de wetenschappen (biologie, fysica en vooral chemie) en op het onderzoek in het laboratorium."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </form>
                     </div>
                     <!-- Klassen -->
                     <div class="tab-pane fade" id="klassen" role="tabpanel" aria-labelledby="profile-tab">
                         <table class="table table-bordered">
                                 <thead>
                                   <tr>
+                                    <th scope="col">#</th>
                                     <th scope="col">Naam</th>
                                     <th scope="col">NumCode</th>
                                     <!-- ipv id misschien als extra "get 'name' from 'leraren' where 'id' = klas.leeraar_id"  -->
-                                    <th scope="col">Leraar Id</th> 
                                     <th scope="col">Richting Id</th>
-                                    <th scope="col">Delete</th>
+                                    <th scope="col">Leraar Id</th> 
+                                    <th scope="col">Verwijder</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td><a href="#">Delete</a></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td><a href="#">Delete</a></td>
-                                  </tr>
+                                        {% for row in klassenRows %}
+                                        <tr>
+                                            <td>{{ row[0] }}</td>
+                                            <td>{{ row[1] }}</td>
+                                            <td>{{ row[2] }}</td>
+                                            <td>{{ row[3] }}</td>
+                                            <td>{{ row[4] }}</td>
+                                            <!-- {% for data in row %}
+                                            <td>{{ data }}</td> 
+                                            {% endfor %} -->
+                                            <td>
+                                                <form action="{{ url_for('verwijderklas', entry_id=row[0])}}" method="post"> 
+                                                    
+                                                    <button type="submit" class="btn btn-danger">Verwijder</button>
+                                                </form>
+                                            </td>   
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                         </table>
+                        
+
+                        <hr>
+                        <h3>Voeg een klas toe</h3>
+
+                        <form action = "{{ url_for('nieuweklas') }}" method = "POST" >
+                                <div class="form-group">
+                                    <label for="naam">Naam</label>
+                                    <input type="text" class="form-control" name="naam" id="naam" placeholder="Wiskunde">
+                                </div>
+                                <div class="form-group">
+                                    <label for="numCode">Numerieke Code</label>
+                                    <input type="text" class="form-control" name="numCode" id="numCode" placeholder="0123456789">
+                                </div>
+                                <div class="form-group">
+                                    <!-- Ik kon hier ook de leraar naam vragen, en dan in de routefunctie de bijbehorende ID verkrijgen om die dan op te slaan, was te weinig tijd voor -->
+                                  <label for="leraar_id">Leraar ID</label>
+                                  <input type="text" class="form-control" name="leraar_id" id="email" placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <!-- Ik kon hier ook de richting naam vragen, en dan in de routefunctie de bijbehorende ID verkrijgen om die dan op te slaan, was te weinig tijd voor -->
+                                    <label for="richting_id">Richting ID</label>
+                                    <input type="text" class="form-control" name="richting_id" id="email" placeholder="0">
+                                </div>
+                            
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </form>
                     </div>
                     <!-- Leraren -->
                     <div class="tab-pane fade" id="leraren" role="tabpanel" aria-labelledby="contact-tab">
-
 
                             <table class="table table-bordered">
                                     <thead>
@@ -94,11 +144,9 @@
                                                 <td>{{ row[0] }}</td>
                                                 <td>{{ row[1] }}</td>
                                                 <td>{{ row[2] }}</td>
+                                                <!-- image werkt nog niet, I know. -->
                                                 <td><img src="data:;base64,{{row[3]}}"></td>
                                                 <td>{{ row[4] }}</td>
-                                                <!-- {% for data in row %}
-                                                <td>{{ data }}</td> 
-                                                {% endfor %} -->
                                                 <td>
                                                     <form action="{{ url_for('verwijderleraar', entry_id=row[0])}}" method="post"> 
                                                         
