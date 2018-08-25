@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+        <h1>Welkom op het Intranet</h1>
+
+        <div class="card ">
+            <div class="card-header"> 
+              <ul class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
+                <li class="nav-item">
+                 <a class="nav-link active" id="richtingen-tab" data-toggle="tab" href="#richtingen" role="tab" aria-controls="richtingen" aria-selected="true">richtingen</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="klassen-tab" data-toggle="tab" href="#klassen" role="tab" aria-controls="klassen" aria-selected="false">klassen</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="leraren-tab" data-toggle="tab" href="#leraren" role="tab" aria-controls="leraren" aria-selected="false">leraren</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <!-- Richtingen -->
+                    <div class="tab-pane fade show active" id="richtingen" role="tabpanel" aria-labelledby="home-tab">
+                        <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Naam</th>
+                                    <th scope="col">Omschrijving</th>
+                                    <th scope="col">Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td><a href="#">Delete</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td><a href="#">Delete</a></td>
+                                  </tr>
+                        </table>   
+                    </div>
+                    <!-- Klassen -->
+                    <div class="tab-pane fade" id="klassen" role="tabpanel" aria-labelledby="profile-tab">
+                        <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Naam</th>
+                                    <th scope="col">NumCode</th>
+                                    <!-- ipv id misschien als extra "get 'name' from 'leraren' where 'id' = klas.leeraar_id"  -->
+                                    <th scope="col">Leraar Id</th> 
+                                    <th scope="col">Richting Id</th>
+                                    <th scope="col">Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td><a href="#">Delete</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td><a href="#">Delete</a></td>
+                                  </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    <!-- Leraren -->
+                    <div class="tab-pane fade" id="leraren" role="tabpanel" aria-labelledby="contact-tab">
+
+                        <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Naam</th>
+                                    <th scope="col">Voornaam</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td><a href="#">Delete</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td><a href="#">Delete</a></td>
+                                  </tr>
+                                </tbody>
+                        </table>
+                        <hr>
+
+                        <h3>Voeg een leraar toe</h3>
+
+                        <form method="POST" action="/nieuweleraar">
+                                <div class="form-group">
+                                    <label for="naam">Naam</label>
+                                    <input type="text" class="form-control" id="naam" placeholder="Maes">
+                                </div>
+                                <div class="form-group">
+                                    <label for="voornaam">Voornaam</label>
+                                    <input type="text" class="form-control" id="voornaam" placeholder="Jan">
+                                </div>
+                                <div class="form-group">
+                                  <label for="email">Email address</label>
+                                  <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputFile">Foto</label>
+                                  <input type="file" class="form-control-file" id="foto" aria-describedby="fileHelp">
+                                  <small id="fileHelp" class="form-text text-muted">Gelieve een vierkante foto te kiezen.</small>
+                                </div>
+                
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                              </form>
+                        
+                    </div>
+                </div>
+            </div>
+              </div>
+ 
+
+{% endblock %}

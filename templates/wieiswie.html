@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+ 
+    <h1>Wie is wie?</h1>
+    <h4>Ontmoet de leraren.</h4> 
+    <!-- indien reeds op website geweest is : "welkom terug" -->
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia eleifend dolor a vestibulum. Donec magna metus, faucibus id consectetur pretium, tempus quis erat. Praesent vel blandit ex, at pretium lacus. Integer porta neque vitae quam porta imperdiet. Ut egestas nulla in eros tempor, nec bibendum mi gravida.</p>
+  
+    <ul class="list-group">
+    {% for richting in richtingen %}
+        <li class="list-group-item">
+            <h2>{{richting.naam}}</h2>
+            <p>{{richting.omschrijving}}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
